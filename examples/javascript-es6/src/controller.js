@@ -14,6 +14,7 @@ class Controller {
         this.view.bindCallback("itemEditCancel", (item) => this.editItemCancel(item.id));
         this.view.bindCallback("itemRemove", (item) => this.removeItem(item.id));
         this.view.bindCallback("itemToggle", (item) => this.toggleComplete(item.id, item.completed));
+        this.view.bindCallback("dateEntered", (item) => this.dateEntered(item.id, item.duedate));
         this.view.bindCallback("removeCompleted", () => this.removeCompletedItems());
         this.view.bindCallback("toggleAll", (status) => this.toggleAll(status.completed));
     }
@@ -131,6 +132,18 @@ class Controller {
     toggleComplete(id, completed, silent) {
         this.model.update(id, { completed }, () => {
             this.view.render("elementComplete", { id, completed });
+        });
+
+        if (!silent)
+            this._filter();
+    }
+
+    /**
+     * Set/Update the due date
+     */
+    dateEntered(id, duedate, silent) {
+        this.model.update(id, { duedate }, () => {
+            this.showAll();
         });
 
         if (!silent)

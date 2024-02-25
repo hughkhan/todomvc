@@ -16,10 +16,11 @@ const escape = (str) => str && reHasUnescapedHtml.test(str) ? str.replace(reUnes
 const escapeHtmlChar = (chr) => htmlEscapes[chr];
 
 const createTodoItem = ({ id, title, completed, checked, index }) => `
-<li data-id="${id}" class="${completed}">
+<li data-id="${id}" class="${completed}" style="margin: 10px;">
     <div class="view">
+        <input class="duedate" type="date" id="duedate" name="duedate">
         <input class="toggle" type="checkbox" ${checked}>
-        <label>${title}</label>
+        <label style="display: inline; margin: 10px;">${title}</label>
         <button class="destroy"></button>
     </div>
 </li>

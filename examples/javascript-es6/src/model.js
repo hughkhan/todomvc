@@ -20,6 +20,7 @@ class Model {
         const newItem = {
             title: title.trim(),
             completed: false,
+            duedate: "2024-02-21", 
         };
 
         this.storage.save(newItem, callback);

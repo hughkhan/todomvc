@@ -158,6 +158,11 @@ export default class View {
             case "itemToggle":
                 $delegate(this.$todoList, ".toggle", "click", (e) => handler({ id: _itemId(e.target), completed: e.target.checked }));
                 break;
+
+            case "dateEntered":
+                $delegate(this.$todoList, ".duedate", "onchange", (e) => handler({ id: _itemId(e.target), duedate: e.target.value }));
+                break;
+    
             case "itemEditDone":
                 $delegate(this.$todoList, "li .edit", "blur", function (e) {
                     if (!e.target.dataset.iscanceled) {
